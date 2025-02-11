@@ -12,8 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transaction', function (Blueprint $table) {
-            $table->id();
+            $table->integer("id")->autoIncrement();
+            $table->integer("user_id");
+            $table->date("transaction_date");
             $table->timestamps();
+
+            $table->foreign("user_id")->references("id")->on("users");
         });
     }
 
